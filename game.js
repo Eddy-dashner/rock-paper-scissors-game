@@ -1,28 +1,36 @@
 function getComputerChoice() {
-    var choices = ["Rock", "Paper", "Scissors"];
-    var randomIndex = Math.floor(Math.random() * choices.length);
+    const choices = ["Rock", "Paper", "Scissor"];
+    const randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
-// Test the getComputerChoice function
-var computerChoice = getComputerChoice();
-console.log(computerChoice);
+
 function playRound(playerSelection, computerSelection) {
-    var playerChoice = playerSelection.toLowerCase();
-    var computerChoice = computerSelection.toLowerCase();
+    const playerChoice = playerSelection.toLowerCase();
+    const computerChoice = computerSelection.toLowerCase();
+
     if (playerChoice === computerChoice) {
         return "It's a tie!";
     } else if (
         (playerChoice === "rock" && computerChoice === "scissors") ||
         (playerChoice === "paper" && computerChoice === "rock") ||
-        (playerChoice === "scissors" && computerChoice === "paper")
+        (playerChoice === "scissor" && computerChoice === "paper")
     ) {
         return "You Win! " + playerChoice + " beats " + computerChoice;
     } else {
         return "You Lose! " + computerChoice + " beats " + playerChoice;
     }
 }
-// Test the playRound function
-var playerChoice = "Rock";
-// var computerChoice = getComputerChoice();
-var result = playRound(playerChoice, computerChoice);
-console.log(result);
+
+function game() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const playerChoice = button.id;
+            const computerChoice = getComputerChoice();
+            const result = playRound(playerChoice, computerChoice);
+            console.log(result);
+        });
+    });
+}
+
+game();
